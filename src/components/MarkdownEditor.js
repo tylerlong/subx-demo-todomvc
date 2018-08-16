@@ -1,18 +1,12 @@
 import React from 'react'
-import MarkdownIt from 'markdown-it'
-
-const mdi = new MarkdownIt()
 
 class MarkdownEditor extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = { markdown: '' }
-  }
   render () {
+    const { article } = this.props
     return (
       <div>
-        <textarea placeholder='Please enter some markdown...' id='markdown-textarea' value={this.state.markdown} onChange={(e) => this.setState({ markdown: e.target.value })} />
-        <div className='markdown-body' dangerouslySetInnerHTML={{ __html: mdi.render(this.state.markdown) }} />
+        <textarea placeholder='Please enter some markdown...' id='markdown-textarea' value={article.text} onChange={e => { article.text = e.target.value }} />
+        <div className='markdown-body' dangerouslySetInnerHTML={{ __html: article.html }} />
       </div>
     )
   }
