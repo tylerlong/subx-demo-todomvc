@@ -6,6 +6,8 @@ import SubX from 'subx'
 
 import Editor from './components/Editor'
 
+import './index.css'
+
 const mdi = new MarkdownIt()
 
 const Article = SubX({ text: '' })
