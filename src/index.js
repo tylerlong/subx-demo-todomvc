@@ -1,37 +1,29 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Subject } from 'rxjs'
 import { debounceTime } from 'rxjs/operators'
 import MarkdownIt from 'markdown-it'
+import SubX from 'subx'
 
 import Editor from './components/Editor'
 
 const mdi = new MarkdownIt()
 
-class Store extends Subject {
-  set text (val) {
-    this._text = val
-    this.next(val)
-  }
-  get text () {
-    return this._text
-  }
-}
-const store = new Store()
+const Article = SubX({ text: '' })
+const article = new Article()
 
 const render = () => {
   ReactDOM.render((<div>
-    <Editor store={store} />
+    <Editor article={article} />
   </div>), document.getElementById('root'))
 }
 
 render()
 
-store.subscribe(render)
+article.subscribe(render)
 
-store.pipe(
+article.pipe(
   debounceTime(1000)
-).subscribe(val => {
-  store.html = mdi.render(val)
+).subscribe(mutation => {
+  article.html = mdi.render(mutation.val)
   render()
 })
