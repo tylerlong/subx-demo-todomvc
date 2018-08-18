@@ -21,8 +21,6 @@ const render = () => {
 
 render()
 
-article.subscribe(render)
-
 article.pipe(
   debounceTime(1000)
 ).subscribe(mutation => {

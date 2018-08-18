@@ -1,6 +1,20 @@
 import React from 'react'
 
 class Editor extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {}
+    this.rerender = this.rerender.bind(this)
+  }
+  rerender () {
+    this.setState(this.state)
+  }
+  componentDidMount () {
+    this.props.article.subscribe(this.rerender)
+  }
+  componentWillUnmount () {
+    this.props.article.unsubscribe(this.rerender)
+  }
   render () {
     console.log('render')
     const { article } = this.props
