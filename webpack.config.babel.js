@@ -1,14 +1,9 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import { join } from 'path'
 import { HotModuleReplacementPlugin } from 'webpack'
 
 const config = {
   mode: 'development',
   entry: './src/index.js',
-  output: {
-    path: join(__dirname, 'build'),
-    filename: '[name].js'
-  },
   module: {
     rules: [
       {

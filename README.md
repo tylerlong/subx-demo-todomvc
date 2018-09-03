@@ -1,5 +1,7 @@
 # Markdown Editor
 
+Markdown editor powered by SubX and React.
+
 
 ## todo
 
