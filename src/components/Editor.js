@@ -4,7 +4,7 @@ import { debounceTime, map } from 'rxjs/operators'
 class Editor extends React.Component {
   constructor (props) {
     super(props)
-    this.textChanged = this.textChanged.bind(this)
+    this.propsChanged = this.propsChanged.bind(this)
     this.htmlChanged = this.htmlChanged.bind(this)
     this.article = props.article
     this.state = {
@@ -12,18 +12,18 @@ class Editor extends React.Component {
     }
     this.html$ = this.article.text$.pipe(debounceTime(1000), map(() => this.article.html()))
   }
-  textChanged () { // trigger render
+  propsChanged () { // trigger render
     this.setState(this.state)
   }
   htmlChanged (html) {
     this.setState({ html })
   }
   componentDidMount () {
-    this.article.text$.subscribe(this.textChanged)
+    this.article.text$.subscribe(this.propsChanged)
     this.html$.subscribe(this.htmlChanged)
   }
   componentWillUnmount () {
-    this.article.text$.unsubscribe(this.textChanged)
+    this.article.text$.unsubscribe(this.propsChanged)
     this.html$.unsubscribe(this.htmlChanged)
   }
   render () {
