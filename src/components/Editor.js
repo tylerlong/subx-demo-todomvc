@@ -12,7 +12,7 @@ class Editor extends React.Component {
     }
     this.html$ = this.article.text$.pipe(debounceTime(1000), map(() => this.article.html()))
   }
-  textChanged () {
+  textChanged () { // trigger render
     this.setState(this.state)
   }
   htmlChanged (html) {

@@ -13,6 +13,7 @@ const Article = SubX({
   text: ''
 }).computed({
   html () {
+    console.log('mdi.render')
     return mdi.render(this.text)
   }
 })
