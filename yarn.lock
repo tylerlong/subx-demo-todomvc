@@ -4290,7 +4290,7 @@ rxjs@^5.5.2:
   dependencies:
     symbol-observable "1.0.1"
 
-rxjs@^6.1.0, rxjs@^6.2.2, rxjs@^6.3.1:
+rxjs@^6.1.0, rxjs@^6.3.1:
   version "6.3.1"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.3.1.tgz#878a1a8c64b8a5da11dcf74b5033fe944cdafb84"
   dependencies:
@@ -4720,12 +4720,12 @@ style-loader@^0.23.0:
     loader-utils "^1.1.0"
     schema-utils "^0.4.5"
 
-subx@0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/subx/-/subx-0.1.1.tgz#cf3d4afd1e377168642a689faeb80bb00d9ba54c"
+subx@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/subx/-/subx-0.1.4.tgz#da986b1720f6141ac78ea4cf147dd093e79b56b8"
   dependencies:
     ramda "^0.25.0"
-    rxjs "^6.2.2"
+    rxjs "^6.3.1"
 
 supports-color@^2.0.0:
   version "2.0.0"

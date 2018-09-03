@@ -21,7 +21,7 @@ const render = () => {
 
 render()
 
-article.pipe(
+article.$.pipe(
   debounceTime(1000)
 ).subscribe(mutation => {
   article.html = mdi.render(mutation.val)

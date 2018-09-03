@@ -9,10 +9,10 @@ class Editor extends React.Component {
     this.forceUpdate()
   }
   componentDidMount () {
-    this.props.article.subscribe(this.rerender)
+    this.props.article.$.subscribe(this.rerender)
   }
   componentWillUnmount () {
-    this.props.article.unsubscribe(this.rerender)
+    this.props.article.$.unsubscribe(this.rerender)
   }
   render () {
     console.log('render')
