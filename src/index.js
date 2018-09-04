@@ -1,11 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import TodoList from './models/TodoList'
-import TodoApp from './components/TodoApp'
+import Todos from './models/Todos'
+import TodoList from './components/TodoList'
 
 import './index.css'
 
-const todoList = new TodoList()
+const todos = new Todos()
 
-ReactDOM.render(<TodoApp todoList={todoList} />, document.getElementById('root'))
+ReactDOM.render(<div>
+  <h1>Todo App</h1>
+  <TodoList todos={todos} />
+</div>, document.getElementById('root'))
