@@ -1,6 +1,6 @@
-# Markdown Editor
+# Todo List
 
-Markdown editor powered by SubX and React.
+Todo List powered by SubX and React.
 
 
 ## todo

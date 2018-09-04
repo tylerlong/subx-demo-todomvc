@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Article from './models/Article'
-import Editor from './components/Editor'
+import TodoList from './models/TodoList'
+import TodoApp from './components/TodoApp'
 
 import './index.css'
 
-const article = new Article()
+const todoList = new TodoList()
 
-ReactDOM.render(<Editor article={article} />, document.getElementById('root'))
+ReactDOM.render(<TodoApp todoList={todoList} />, document.getElementById('root'))

@@ -1,12 +1,11 @@
 {
-  "name": "subx-demo-markdown-editor",
+  "name": "subx-demo-todo-list",
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --open --progress --colors"
   },
   "dependencies": {
-    "markdown-it": "^8.4.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "rxjs": "^6.3.1",
