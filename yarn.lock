@@ -4700,9 +4700,9 @@ style-loader@^0.23.0:
     loader-utils "^1.1.0"
     schema-utils "^0.4.5"
 
-subx@^0.1.5:
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/subx/-/subx-0.1.5.tgz#989ddbd7c8231057a1532b8c3959f8f95c76fd5e"
+subx@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/subx/-/subx-0.1.7.tgz#1098c3e2e43e3f35fa86ea6597a766d7a51f8cce"
   dependencies:
     ramda "^0.25.0"
     rxjs "^6.3.1"

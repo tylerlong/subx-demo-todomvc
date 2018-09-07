@@ -3,7 +3,7 @@ import React from 'react'
 class TodoItem extends React.Component {
   componentWillMount () {
     this.todo = this.props.todo
-    this.doneSubscription = this.todo.done$.subscribe(this.forceUpdate())
+    this.doneSubscription = this.todo.done$.subscribe(() => this.forceUpdate())
   }
   componentWillUnmount () {
     this.doneSubscription.unsubscribe()
