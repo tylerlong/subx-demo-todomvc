@@ -10,7 +10,7 @@ class TodoList extends React.Component {
     this.todosSubscription.unsubscribe()
   }
   render () {
-    console.log('render')
+    console.log('render TodoList')
     return <ul>
       { this.todos.todos.map(todo => <TodoItem todo={todo} key={todo.id} />) }
     </ul>

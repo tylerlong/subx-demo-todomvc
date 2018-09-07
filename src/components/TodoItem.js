@@ -9,6 +9,7 @@ class TodoItem extends React.Component {
     this.doneSubscription.unsubscribe()
   }
   render () {
+    console.log('render TodoItem')
     return <li>
       <input type='checkbox' checked={this.todo.done} onChange={e => { this.todo.done = e.target.checked }} />
       {this.todo.text}
