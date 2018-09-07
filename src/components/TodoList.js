@@ -2,16 +2,12 @@ import React from 'react'
 import TodoItem from './TodoItem'
 
 class TodoList extends React.Component {
-  constructor (props) {
-    super(props)
-    this.todos = props.todos
-    this.propsChanged = () => this.forceUpdate()
-  }
-  componentDidMount () {
-    this.todos.todos$.subscribe(this.propsChanged)
+  componentWillMount () {
+    this.todos = this.props.todos
+    this.todosSubscription = this.todos.todos$.subscribe(() => this.forceUpdate())
   }
   componentWillUnmount () {
-    this.todos.todos$.unsubscribe(this.propsChanged)
+    this.todosSubscription.unsubscribe()
   }
   render () {
     console.log('render')

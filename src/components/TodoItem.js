@@ -1,16 +1,12 @@
 import React from 'react'
 
 class TodoItem extends React.Component {
-  constructor (props) {
-    super(props)
+  componentWillMount () {
     this.todo = this.props.todo
-    this.propsChanged = () => this.forceUpdate()
-  }
-  componentDidMount () {
-    this.todo.done$.subscribe(this.propsChanged)
+    this.doneSubscription = this.todo.done$.subscribe(this.forceUpdate())
   }
   componentWillUnmount () {
-    this.todo.done$.unsubscribe(this.propsChanged)
+    this.doneSubscription.unsubscribe()
   }
   render () {
     return <li>
