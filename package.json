@@ -6,6 +6,7 @@
     "start": "webpack-dev-server --open --progress --colors"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-subx": "^0.2.0",
