@@ -19,7 +19,7 @@ class TodoItem extends Component {
     const todo = this.props.todo
     return <li className={classNames('todo', { completed: !todo.active })}>
       <div className='view'>
-        <input className='toggle' type='checkbox' value={!todo.active} onChange={e => { todo.active = !todo.active }} />
+        <input className='toggle' type='checkbox' checked={!todo.active} onChange={e => { todo.active = !e.target.checked }} />
         <label>{todo.title}</label>
         <button className='destroy' />
       </div>
