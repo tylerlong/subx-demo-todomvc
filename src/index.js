@@ -4,4 +4,15 @@ import ReactDOM from 'react-dom'
 import 'todomvc-common/base.css'
 import 'todomvc-app-css/index.css'
 
-ReactDOM.render(<div>Hello world</div>, document.getElementById('container'))
+class App extends React.Component {
+  render () {
+    return <section className='todoapp'>
+      <header className='header'>
+        <h1>todos</h1>
+        <input className='new-todo' autoFocus autoComplete='off' placeholder='What needs to be done?' />
+      </header>
+    </section>
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById('container'))
