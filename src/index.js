@@ -11,6 +11,20 @@ class App extends React.Component {
         <h1>todos</h1>
         <input className='new-todo' autoFocus autoComplete='off' placeholder='What needs to be done?' />
       </header>
+      <section className='main'>
+        <input id='toggle-all' className='toggle-all' type='checkbox' />
+        <label for='toggle-all'>Mark all as complete</label>
+        <ul className='todo-list'>
+          <li className='todo'>
+            <div className='view'>
+              <input className='toggle' type='checkbox' />
+              <label>todo.title</label>
+              <button className='destroy' />
+            </div>
+            <input className='edit' type='text' />
+          </li>
+        </ul>
+      </section>
     </section>
   }
 }
