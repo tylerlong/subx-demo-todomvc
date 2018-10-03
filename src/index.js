@@ -56,6 +56,9 @@ const store = SubX.create({
     todo.editing = false
     todo.title = todo.cache
     delete todo.cache
+  },
+  clearCompleted () {
+    this.todos = this.todos.filter(todo => !todo.completed)
   }
 })
 
@@ -123,7 +126,7 @@ class Footer extends Component {
         <li><a href='#/active'>Active</a></li>
         <li><a href='#/completed'>Completed</a></li>
       </ul>
-      {store.done > 0 ? <button className='clear-completed'>Clear completed</button> : ''}
+      {store.done > 0 ? <button className='clear-completed' onClick={e => store.clearCompleted()}>Clear completed</button> : ''}
     </footer>
   }
 }
