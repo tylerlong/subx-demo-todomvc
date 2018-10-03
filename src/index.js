@@ -45,6 +45,44 @@ class TodoItem extends Component {
   }
 }
 
+class Main extends Component {
+  render () {
+    const store = this.props.store
+    const todos = store.todos
+    if (todos.length === 0) {
+      return []
+    }
+    return <section className='main'>
+      <input id='toggle-all' className='toggle-all' type='checkbox' checked={store.allDone} onChange={e => store.toggleAll()} />
+      <label htmlFor='toggle-all'>Mark all as complete</label>
+      <ul className='todo-list'>
+        {todos.map(todo => <TodoItem todo={todo} key={todo.id} />)}
+      </ul>
+    </section>
+  }
+}
+
+class Footer extends Component {
+  render () {
+    const store = this.props.store
+    const todos = store.todos
+    if (todos.length === 0) {
+      return []
+    }
+    return <footer className='footer'>
+      <span className='todo-count'>
+        <strong>{pluralize('item', store.left, true)}</strong> left
+      </span>
+      <ul className='filters'>
+        <li><a href='#/all'>All</a></li>
+        <li><a href='#/active'>Active</a></li>
+        <li><a href='#/completed'>Completed</a></li>
+      </ul>
+      <button className='clear-completed'>Clear completed</button>
+    </footer>
+  }
+}
+
 class App extends Component {
   constructor (props) {
     super(props)
@@ -70,26 +108,8 @@ class App extends Component {
           <h1>todos</h1>
           <input className='new-todo' autoFocus autoComplete='off' placeholder='What needs to be done?' onKeyUp={this.handleEnter} />
         </header>
-        <section className='main'>
-          <input id='toggle-all' className='toggle-all' type='checkbox' checked={this.store.allDone} onChange={e => this.store.toggleAll()} />
-          <label htmlFor='toggle-all'>Mark all as complete</label>
-          <ul className='todo-list'>
-            {this.todos.map(todo => <TodoItem todo={todo} key={todo.id} />)}
-          </ul>
-        </section>
-        <footer className='footer'>
-          <span className='todo-count'>
-            <strong>{pluralize('item', this.store.left, true)}</strong> left
-          </span>
-          <ul className='filters'>
-            <li><a href='#/all'>All</a></li>
-            <li><a href='#/active'>Active</a></li>
-            <li><a href='#/completed'>Completed</a></li>
-          </ul>
-          <button className='clear-completed'>
-          Clear completed
-          </button>
-        </footer>
+        <Main store={store} />
+        <Footer store={store} />
       </section>,
       <footer className='info'>
         <p>Double-click to edit a todo</p>
