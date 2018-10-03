@@ -6,6 +6,7 @@ import uuid from 'uuid/v1'
 import classNames from 'classnames'
 import pluralize from 'pluralize'
 import * as R from 'ramda'
+import { Router } from 'director/build/director'
 
 import 'todomvc-app-css/index.css'
 
@@ -20,13 +21,13 @@ Todo.create = obj => new Todo({
 })
 const store = SubX.create({
   todos: [],
-  show: 'All',
+  show: 'all',
   get visibleTodos () {
-    if (this.show === 'All') {
+    if (this.show === 'all') {
       return this.todos
-    } else if (this.show === 'Active') {
+    } else if (this.show === 'active') {
       return this.todos.filter(todo => !todo.completed)
-    } else if (this.show === 'Completed') {
+    } else if (this.show === 'completed') {
       return this.todos.filter(todo => todo.completed)
     }
   },
@@ -71,6 +72,13 @@ const store = SubX.create({
     this.todos = this.todos.filter(todo => !todo.completed)
   }
 })
+
+const router = new Router({
+  '/all': () => { store.show = 'all' },
+  '/active': () => { store.show = 'active' },
+  '/completed': () => { store.show = 'completed' }
+})
+router.init()
 
 class TodoItem extends Component {
   constructor (props) {
@@ -132,9 +140,9 @@ class Footer extends Component {
         <strong>{pluralize('item', store.left, true)}</strong> left
       </span>
       <ul className='filters'>
-        <li><a href='#/all' className={classNames({ selected: store.show === 'All' })}>All</a></li>
-        <li><a href='#/active' className={classNames({ selected: store.show === 'Active' })}>Active</a></li>
-        <li><a href='#/completed' className={classNames({ selected: store.show === 'Completed' })}>Completed</a></li>
+        <li><a href='#/all' className={classNames({ selected: store.show === 'all' })}>All</a></li>
+        <li><a href='#/active' className={classNames({ selected: store.show === 'active' })}>Active</a></li>
+        <li><a href='#/completed' className={classNames({ selected: store.show === 'completed' })}>Completed</a></li>
       </ul>
       {store.done > 0 ? <button className='clear-completed' onClick={e => store.clearCompleted()}>Clear completed</button> : ''}
     </footer>
