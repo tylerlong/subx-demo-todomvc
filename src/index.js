@@ -19,6 +19,9 @@ const store = SubX.create({
   get allDone () {
     return R.all(todo => todo.completed, this.todos)
   },
+  get left () {
+    return this.todos.filter(todo => !todo.completed).length
+  },
   toggleAll () {
     if (this.allDone) {
       R.forEach(todo => { todo.completed = false }, this.todos)
@@ -76,7 +79,7 @@ class App extends Component {
         </section>
         <footer className='footer'>
           <span className='todo-count'>
-            <strong>{pluralize('item', this.todos.filter(todo => !todo.completed).length, true)}</strong> left
+            <strong>{pluralize('item', this.store.left, true)}</strong> left
           </span>
           <ul className='filters'>
             <li><a href='#/all'>All</a></li>
