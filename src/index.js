@@ -20,6 +20,16 @@ Todo.create = obj => new Todo({
 })
 const store = SubX.create({
   todos: [],
+  show: 'All',
+  get visibleTodos () {
+    if (this.show === 'All') {
+      return this.todos
+    } else if (this.show === 'Active') {
+      return this.todos.filter(todo => !todo.completed)
+    } else if (this.show === 'Completed') {
+      return this.todos.filter(todo => todo.completed)
+    }
+  },
   get allDone () {
     return R.all(todo => todo.completed, this.todos)
   },
@@ -104,7 +114,7 @@ class Main extends Component {
       <input id='toggle-all' className='toggle-all' type='checkbox' checked={store.allDone} onChange={e => store.toggleAll()} />
       <label htmlFor='toggle-all'>Mark all as complete</label>
       <ul className='todo-list'>
-        {todos.map(todo => <TodoItem todo={todo} key={todo.id} />)}
+        {store.visibleTodos.map(todo => <TodoItem todo={todo} key={todo.id} />)}
       </ul>
     </section>
   }
@@ -122,9 +132,9 @@ class Footer extends Component {
         <strong>{pluralize('item', store.left, true)}</strong> left
       </span>
       <ul className='filters'>
-        <li><a href='#/all'>All</a></li>
-        <li><a href='#/active'>Active</a></li>
-        <li><a href='#/completed'>Completed</a></li>
+        <li><a href='#/all' className={classNames({ selected: store.show === 'All' })}>All</a></li>
+        <li><a href='#/active' className={classNames({ selected: store.show === 'Active' })}>Active</a></li>
+        <li><a href='#/completed' className={classNames({ selected: store.show === 'Completed' })}>Completed</a></li>
       </ul>
       {store.done > 0 ? <button className='clear-completed' onClick={e => store.clearCompleted()}>Clear completed</button> : ''}
     </footer>
