@@ -11,19 +11,19 @@ import 'todomvc-app-css/index.css'
 
 const Todo = new SubX({
   title: '',
-  active: true
+  completed: false
 })
 Todo.create = obj => new Todo({ id: uuid(), ...obj })
 const store = SubX.create({
   todos: [],
   get allDone () {
-    return R.none(todo => todo.active, this.todos)
+    return R.all(todo => todo.completed, this.todos)
   },
   toggleAll () {
     if (this.allDone) {
-      R.forEach(todo => { todo.active = true }, this.todos)
+      R.forEach(todo => { todo.completed = false }, this.todos)
     } else {
-      R.forEach(todo => { todo.active = false }, this.todos)
+      R.forEach(todo => { todo.completed = true }, this.todos)
     }
   }
 })
@@ -31,9 +31,9 @@ const store = SubX.create({
 class TodoItem extends Component {
   render () {
     const todo = this.props.todo
-    return <li className={classNames('todo', { completed: !todo.active })}>
+    return <li className={classNames('todo', { completed: todo.completed })}>
       <div className='view'>
-        <input className='toggle' type='checkbox' checked={!todo.active} onChange={e => { todo.active = !e.target.checked }} />
+        <input className='toggle' type='checkbox' checked={todo.completed} onChange={e => { todo.completed = e.target.checked }} />
         <label>{todo.title}</label>
         <button className='destroy' />
       </div>
@@ -76,7 +76,7 @@ class App extends Component {
         </section>
         <footer className='footer'>
           <span className='todo-count'>
-            <strong>{pluralize('item', this.todos.filter(todo => todo.active).length, true)}</strong> left
+            <strong>{pluralize('item', this.todos.filter(todo => !todo.completed).length, true)}</strong> left
           </span>
           <ul className='filters'>
             <li><a href='#/all'>All</a></li>
