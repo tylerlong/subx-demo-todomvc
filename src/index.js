@@ -4,6 +4,8 @@ import SubX from 'subx'
 import { Component } from 'react-subx'
 import uuid from 'uuid/v1'
 import classNames from 'classnames'
+import pluralize from 'pluralize'
+import * as R from 'ramda'
 
 import 'todomvc-app-css/index.css'
 
@@ -12,7 +14,19 @@ const Todo = new SubX({
   active: true
 })
 Todo.create = obj => new Todo({ id: uuid(), ...obj })
-const store = SubX.create({ todos: [] })
+const store = SubX.create({
+  todos: [],
+  get allDone () {
+    return R.none(todo => todo.active, this.todos)
+  },
+  toggleAll () {
+    if (this.allDone) {
+      R.forEach(todo => { todo.active = true }, this.todos)
+    } else {
+      R.forEach(todo => { todo.active = false }, this.todos)
+    }
+  }
+})
 
 class TodoItem extends Component {
   render () {
@@ -31,7 +45,8 @@ class TodoItem extends Component {
 class App extends Component {
   constructor (props) {
     super(props)
-    this.todos = this.props.store.todos
+    this.store = this.props.store
+    this.todos = this.store.todos
     this.handleEnter = this.handleEnter.bind(this)
   }
   handleEnter (e) {
@@ -53,7 +68,7 @@ class App extends Component {
           <input className='new-todo' autoFocus autoComplete='off' placeholder='What needs to be done?' onKeyUp={this.handleEnter} />
         </header>
         <section className='main'>
-          <input id='toggle-all' className='toggle-all' type='checkbox' />
+          <input id='toggle-all' className='toggle-all' type='checkbox' checked={this.store.allDone} onChange={e => this.store.toggleAll()} />
           <label htmlFor='toggle-all'>Mark all as complete</label>
           <ul className='todo-list'>
             {this.todos.map(todo => <TodoItem todo={todo} key={todo.id} />)}
@@ -61,7 +76,7 @@ class App extends Component {
         </section>
         <footer className='footer'>
           <span className='todo-count'>
-            <strong>2</strong> items left
+            <strong>{pluralize('item', this.todos.filter(todo => todo.active).length, true)}</strong> left
           </span>
           <ul className='filters'>
             <li><a href='#/all'>All</a></li>
