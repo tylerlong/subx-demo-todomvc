@@ -25,6 +25,9 @@ const store = SubX.create({
   get left () {
     return this.todos.filter(todo => !todo.completed).length
   },
+  get done () {
+    return this.todos.filter(todo => todo.completed).length
+  },
   toggleAll () {
     if (this.allDone) {
       R.forEach(todo => { todo.completed = false }, this.todos)
@@ -57,7 +60,7 @@ class Main extends Component {
     const store = this.props.store
     const todos = store.todos
     if (todos.length === 0) {
-      return []
+      return ''
     }
     return <section className='main'>
       <input id='toggle-all' className='toggle-all' type='checkbox' checked={store.allDone} onChange={e => store.toggleAll()} />
@@ -74,7 +77,7 @@ class Footer extends Component {
     const store = this.props.store
     const todos = store.todos
     if (todos.length === 0) {
-      return []
+      return ''
     }
     return <footer className='footer'>
       <span className='todo-count'>
@@ -85,7 +88,7 @@ class Footer extends Component {
         <li><a href='#/active'>Active</a></li>
         <li><a href='#/completed'>Completed</a></li>
       </ul>
-      <button className='clear-completed'>Clear completed</button>
+      {store.done > 0 ? <button className='clear-completed'>Clear completed</button> : ''}
     </footer>
   }
 }
