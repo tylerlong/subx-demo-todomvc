@@ -13,7 +13,10 @@ const Todo = new SubX({
   title: '',
   completed: false
 })
-Todo.create = obj => new Todo({ id: uuid(), ...obj })
+Todo.create = obj => new Todo({
+  id: uuid(),
+  ...obj
+})
 const store = SubX.create({
   todos: [],
   get allDone () {
@@ -28,6 +31,10 @@ const store = SubX.create({
     } else {
       R.forEach(todo => { todo.completed = true }, this.todos)
     }
+  },
+  remove (todo) {
+    const index = R.findIndex(t => t.id === todo.id, this.todos)
+    this.todos.splice(index, 1)
   }
 })
 
@@ -38,7 +45,7 @@ class TodoItem extends Component {
       <div className='view'>
         <input className='toggle' type='checkbox' checked={todo.completed} onChange={e => { todo.completed = e.target.checked }} />
         <label>{todo.title}</label>
-        <button className='destroy' />
+        <button className='destroy' onClick={e => store.remove(todo)} />
       </div>
       <input className='edit' type='text' />
     </li>
