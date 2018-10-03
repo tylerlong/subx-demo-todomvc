@@ -11,7 +11,8 @@ import 'todomvc-app-css/index.css'
 
 const Todo = new SubX({
   title: '',
-  completed: false
+  completed: false,
+  editing: false
 })
 Todo.create = obj => new Todo({
   id: uuid(),
@@ -38,19 +39,39 @@ const store = SubX.create({
   remove (todo) {
     const index = R.findIndex(t => t.id === todo.id, this.todos)
     this.todos.splice(index, 1)
+  },
+  editTodo (todo) {
+    todo.editing = true
+    todo.cache = todo.title
+  },
+  doneEdit (todo) {
+    todo.editing = false
+    delete todo.cache
+    todo.title = todo.title.trim()
+    if (todo.title === '') {
+      this.remove(todo)
+    }
+  },
+  cancelEdit (todo) {
+    todo.editing = false
+    todo.title = todo.cache
+    delete todo.cache
   }
 })
 
 class TodoItem extends Component {
   render () {
     const todo = this.props.todo
-    return <li className={classNames('todo', { completed: todo.completed })}>
+    return <li className={classNames('todo', { completed: todo.completed, editing: todo.editing })}>
       <div className='view'>
         <input className='toggle' type='checkbox' checked={todo.completed} onChange={e => { todo.completed = e.target.checked }} />
-        <label>{todo.title}</label>
+        <label onDoubleClick={e => {
+          store.editTodo(todo)
+          setTimeout(() => ReactDOM.findDOMNode(this.refs.editField).focus(), 10)
+        }}>{todo.title}</label>
         <button className='destroy' onClick={e => store.remove(todo)} />
       </div>
-      <input className='edit' type='text' />
+      <input ref='editField' className='edit' type='text' value={todo.title} onChange={e => { todo.title = e.target.value }} />
     </li>
   }
 }
