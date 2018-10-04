@@ -81,20 +81,6 @@ const router = new Router({
 router.init()
 
 class TodoItem extends Component {
-  constructor (props) {
-    super(props)
-    if (this.forceUpdate) {
-      const temp = this.forceUpdate.bind(this)
-      this.forceUpdate = () => {
-        console.log('before forceUpdate', this.props.todo.id, this.props.todo.title)
-        temp()
-        console.log('after forceUpdate', this.props.todo.id, this.props.todo.title)
-      }
-    }
-  }
-  componentWillUnmount () {
-    console.log('componentWillUnmount', this.props.todo.id, this.props.todo.title)
-  }
   handleKeyUp (e) {
     if (e.key === 'Enter') {
       store.doneEdit(this.todo)

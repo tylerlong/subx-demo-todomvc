@@ -3966,9 +3966,9 @@ react-dom@^16.5.2:
     prop-types "^15.6.2"
     schedule "^0.5.0"
 
-react-subx@^0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/react-subx/-/react-subx-0.2.3.tgz#3d45536c4d4eeae97f91e61873fcf12d1612ff1e"
+react-subx@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/react-subx/-/react-subx-0.2.4.tgz#3281ca35e5f6967500c08a367863bc225e0be3bf"
 
 react@^16.5.2:
   version "16.5.2"
