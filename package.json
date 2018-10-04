@@ -11,7 +11,7 @@
     "pluralize": "^7.0.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-subx": "^0.2.2",
+    "react-subx": "^0.2.3",
     "rxjs": "^6.3.3",
     "subx": "^0.4.5",
     "todomvc-app-css": "^2.1.2",

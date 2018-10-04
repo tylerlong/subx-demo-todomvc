@@ -8,3 +8,8 @@ Use [react-subx](https://github.com/tylerlong/react-subx) if you want to use Rea
 ## Credit
 
 This TodoMVC application was created by [Tyler Long](https://github.com/tylerlong).
+
+
+## Note
+
+- Pitfall: You should not save props in constructor and use it in render. Because they will not be tracked at all.

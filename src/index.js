@@ -81,6 +81,20 @@ const router = new Router({
 router.init()
 
 class TodoItem extends Component {
+  constructor (props) {
+    super(props)
+    if (this.forceUpdate) {
+      const temp = this.forceUpdate.bind(this)
+      this.forceUpdate = () => {
+        console.log('before forceUpdate', this.props.todo.id, this.props.todo.title)
+        temp()
+        console.log('after forceUpdate', this.props.todo.id, this.props.todo.title)
+      }
+    }
+  }
+  componentWillUnmount () {
+    console.log('componentWillUnmount', this.props.todo.id, this.props.todo.title)
+  }
   handleKeyUp (e) {
     if (e.key === 'Enter') {
       store.doneEdit(this.todo)
@@ -90,7 +104,6 @@ class TodoItem extends Component {
   }
   render () {
     this.todo = this.props.todo
-    console.log('render TodoItem')
     return <li className={classNames('todo', { completed: this.todo.completed, editing: this.todo.editing })}>
       <div className='view'>
         <input className='toggle' type='checkbox' checked={this.todo.completed} onChange={e => { this.todo.completed = e.target.checked }} />
@@ -110,7 +123,6 @@ class TodoItem extends Component {
 
 class Main extends Component {
   render () {
-    console.log('render Main')
     const store = this.props.store
     const todos = store.todos
     if (todos.length === 0) {
@@ -128,7 +140,6 @@ class Main extends Component {
 
 class Footer extends Component {
   render () {
-    console.log('render Footer')
     const store = this.props.store
     const todos = store.todos
     if (todos.length === 0) {
@@ -163,7 +174,6 @@ class App extends Component {
   render () {
     this.store = this.props.store
     this.todos = this.store.todos
-    console.log('render App')
     return <>
       <section className='todoapp'>
         <header className='header'>
