@@ -21,27 +21,27 @@ Todo.create = obj => new Todo({
 })
 const store = SubX.create({
   todos: [],
-  show: 'all',
+  visibility: 'all',
   get visibleTodos () {
-    if (this.show === 'all') {
+    if (this.visibility === 'all') {
       return this.todos
-    } else if (this.show === 'active') {
+    } else if (this.visibility === 'active') {
       return this.todos.filter(todo => !todo.completed)
-    } else if (this.show === 'completed') {
+    } else if (this.visibility === 'completed') {
       return this.todos.filter(todo => todo.completed)
     }
   },
-  get allDone () {
+  get areAllDone () {
     return R.all(todo => todo.completed, this.todos)
   },
-  get left () {
+  get leftCount () {
     return this.todos.filter(todo => !todo.completed).length
   },
-  get done () {
+  get doneCount () {
     return this.todos.filter(todo => todo.completed).length
   },
   toggleAll () {
-    if (this.allDone) {
+    if (this.areAllDone) {
       R.forEach(todo => { todo.completed = false }, this.todos)
     } else {
       R.forEach(todo => { todo.completed = true }, this.todos)
@@ -51,7 +51,7 @@ const store = SubX.create({
     const index = R.findIndex(t => t.id === todo.id, this.todos)
     this.todos.splice(index, 1)
   },
-  editTodo (todo) {
+  edit (todo) {
     todo.editing = true
     todo.cache = todo.title
   },
@@ -74,9 +74,9 @@ const store = SubX.create({
 })
 
 const router = new Router({
-  '/all': () => { store.show = 'all' },
-  '/active': () => { store.show = 'active' },
-  '/completed': () => { store.show = 'completed' }
+  '/all': () => { store.visibility = 'all' },
+  '/active': () => { store.visibility = 'active' },
+  '/completed': () => { store.visibility = 'completed' }
 })
 router.init()
 
@@ -94,7 +94,7 @@ class TodoItem extends Component {
       <div className='view'>
         <input className='toggle' type='checkbox' checked={this.todo.completed} onChange={e => { this.todo.completed = e.target.checked }} />
         <label onDoubleClick={e => {
-          store.editTodo(this.todo)
+          store.edit(this.todo)
           setTimeout(() => ReactDOM.findDOMNode(this.refs.editField).focus(), 10)
         }}>{this.todo.title}</label>
         <button className='destroy' onClick={e => store.remove(this.todo)} />
@@ -115,7 +115,7 @@ class Main extends Component {
       return ''
     }
     return <section className='main'>
-      <input id='toggle-all' className='toggle-all' type='checkbox' checked={store.allDone} onChange={e => store.toggleAll()} />
+      <input id='toggle-all' className='toggle-all' type='checkbox' checked={store.areAllDone} onChange={e => store.toggleAll()} />
       <label htmlFor='toggle-all'>Mark all as complete</label>
       <ul className='todo-list'>
         {store.visibleTodos.map(todo => <TodoItem todo={todo} key={todo.id} />)}
@@ -133,14 +133,14 @@ class Footer extends Component {
     }
     return <footer className='footer'>
       <span className='todo-count'>
-        <strong>{pluralize('item', store.left, true)}</strong> left
+        <strong>{pluralize('item', store.leftCount, true)}</strong> left
       </span>
       <ul className='filters'>
-        <li><a href='#/all' className={classNames({ selected: store.show === 'all' })}>All</a></li>
-        <li><a href='#/active' className={classNames({ selected: store.show === 'active' })}>Active</a></li>
-        <li><a href='#/completed' className={classNames({ selected: store.show === 'completed' })}>Completed</a></li>
+        <li><a href='#/all' className={classNames({ selected: store.visibility === 'all' })}>All</a></li>
+        <li><a href='#/active' className={classNames({ selected: store.visibility === 'active' })}>Active</a></li>
+        <li><a href='#/completed' className={classNames({ selected: store.visibility === 'completed' })}>Completed</a></li>
       </ul>
-      {store.done > 0 ? <button className='clear-completed' onClick={e => store.clearCompleted()}>Clear completed</button> : ''}
+      {store.doneCount > 0 ? <button className='clear-completed' onClick={e => store.clearCompleted()}>Clear completed</button> : ''}
     </footer>
   }
 }
