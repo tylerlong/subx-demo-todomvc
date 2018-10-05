@@ -11,15 +11,8 @@ import { filter, debounceTime } from 'rxjs/operators'
 
 import 'todomvc-app-css/index.css'
 
-const Todo = new SubX({
-  title: '',
-  completed: false,
-  editing: false
-})
-Todo.create = obj => new Todo({
-  id: uuid(),
-  ...obj
-})
+const Todo = new SubX({ title: '', completed: false })
+Todo.create = obj => new Todo({ id: uuid(), ...obj })
 const store = SubX.create({
   todos: JSON.parse(global.localStorage.getItem('todomvc-subx-todos') || '[]'),
   visibility: 'all',
@@ -53,11 +46,9 @@ const store = SubX.create({
     this.todos.splice(index, 1)
   },
   edit (todo) {
-    todo.editing = true
     todo.cache = todo.title
   },
   doneEdit (todo) {
-    todo.editing = false
     delete todo.cache
     todo.title = todo.title.trim()
     if (todo.title === '') {
@@ -65,7 +56,6 @@ const store = SubX.create({
     }
   },
   cancelEdit (todo) {
-    todo.editing = false
     todo.title = todo.cache
     delete todo.cache
   },
@@ -147,7 +137,7 @@ class TodoItem extends Component {
   }
   render () {
     this.todo = this.props.todo
-    return <li className={classNames('todo', { completed: this.todo.completed, editing: this.todo.editing })}>
+    return <li className={classNames('todo', { completed: this.todo.completed, editing: this.todo.cache })}>
       <div className='view'>
         <input className='toggle' type='checkbox' checked={this.todo.completed} onChange={e => { this.todo.completed = e.target.checked }} />
         <label onDoubleClick={e => {
