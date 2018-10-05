@@ -87,6 +87,56 @@ const router = new Router({
 })
 router.init()
 
+class App extends Component {
+  handleEnter (e) {
+    if (e.key !== 'Enter') {
+      return
+    }
+    const title = e.target.value.trim()
+    if (title === '') {
+      return
+    }
+    e.target.value = ''
+    this.todos.push(Todo.create({ title }))
+  }
+  render () {
+    this.store = this.props.store
+    this.todos = this.store.todos
+    return <>
+      <section className='todoapp'>
+        <header className='header'>
+          <h1>todos</h1>
+          <input className='new-todo' autoFocus autoComplete='off' placeholder='What needs to be done?' onKeyUp={this.handleEnter.bind(this)} />
+        </header>
+        <Body store={store} />
+        <Footer store={store} />
+      </section>,
+      <footer className='info'>
+        <p>Double-click to edit a todo</p>
+        <p>Written by <a href='https://github.com/tylerlong'>Tyler Long</a></p>
+        <p><a href='https://github.com/tylerlong/subx-demo-todomvc'>Source code</a> available</p>
+      </footer>
+    </>
+  }
+}
+
+class Body extends Component {
+  render () {
+    const store = this.props.store
+    const todos = store.todos
+    if (todos.length === 0) {
+      return ''
+    }
+    return <section className='main'>
+      <input id='toggle-all' className='toggle-all' type='checkbox' checked={store.areAllDone} onChange={e => store.toggleAll()} />
+      <label htmlFor='toggle-all'>Mark all as complete</label>
+      <ul className='todo-list'>
+        {store.visibleTodos.map(todo => <TodoItem todo={todo} key={todo.id} />)}
+      </ul>
+    </section>
+  }
+}
+
 class TodoItem extends Component {
   handleKeyUp (e) {
     if (e.key === 'Enter') {
@@ -114,23 +164,6 @@ class TodoItem extends Component {
   }
 }
 
-class Main extends Component {
-  render () {
-    const store = this.props.store
-    const todos = store.todos
-    if (todos.length === 0) {
-      return ''
-    }
-    return <section className='main'>
-      <input id='toggle-all' className='toggle-all' type='checkbox' checked={store.areAllDone} onChange={e => store.toggleAll()} />
-      <label htmlFor='toggle-all'>Mark all as complete</label>
-      <ul className='todo-list'>
-        {store.visibleTodos.map(todo => <TodoItem todo={todo} key={todo.id} />)}
-      </ul>
-    </section>
-  }
-}
-
 class Footer extends Component {
   render () {
     const store = this.props.store
@@ -149,39 +182,6 @@ class Footer extends Component {
       </ul>
       {store.doneCount > 0 ? <button className='clear-completed' onClick={e => store.clearCompleted()}>Clear completed</button> : ''}
     </footer>
-  }
-}
-
-class App extends Component {
-  handleEnter (e) {
-    if (e.key !== 'Enter') {
-      return
-    }
-    const title = e.target.value.trim()
-    if (title === '') {
-      return
-    }
-    e.target.value = ''
-    this.todos.push(Todo.create({ title }))
-  }
-  render () {
-    this.store = this.props.store
-    this.todos = this.store.todos
-    return <>
-      <section className='todoapp'>
-        <header className='header'>
-          <h1>todos</h1>
-          <input className='new-todo' autoFocus autoComplete='off' placeholder='What needs to be done?' onKeyUp={this.handleEnter.bind(this)} />
-        </header>
-        <Main store={store} />
-        <Footer store={store} />
-      </section>,
-      <footer className='info'>
-        <p>Double-click to edit a todo</p>
-        <p>Written by <a href='https://github.com/tylerlong'>Tyler Long</a></p>
-        <p><a href='https://github.com/tylerlong/subx-demo-todomvc'>Source code</a> available</p>
-      </footer>
-    </>
   }
 }
 
