@@ -7,6 +7,7 @@ import classNames from 'classnames'
 import pluralize from 'pluralize'
 import * as R from 'ramda'
 import { Router } from 'director/build/director'
+import { filter, debounceTime } from 'rxjs/operators'
 
 import 'todomvc-app-css/index.css'
 
@@ -20,7 +21,7 @@ Todo.create = obj => new Todo({
   ...obj
 })
 const store = SubX.create({
-  todos: [],
+  todos: JSON.parse(global.localStorage.getItem('todomvc-subx-todos') || '[]'),
   visibility: 'all',
   get visibleTodos () {
     if (this.visibility === 'all') {
@@ -71,6 +72,12 @@ const store = SubX.create({
   clearCompleted () {
     this.todos = this.todos.filter(todo => !todo.completed)
   }
+})
+store.$.pipe(
+  filter(event => R.startsWith(['todos'], event.path)),
+  debounceTime(100)
+).subscribe(event => {
+  global.localStorage.setItem('todomvc-subx-todos', JSON.stringify(store.todos))
 })
 
 const router = new Router({
