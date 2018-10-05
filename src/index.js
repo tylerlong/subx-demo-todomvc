@@ -41,6 +41,12 @@ const store = SubX.create({
       R.forEach(todo => { todo.completed = true }, this.todos)
     }
   },
+  add (title) {
+    title = title.trim()
+    if (title !== '') {
+      this.todos.push(Todo.create({ title }))
+    }
+  },
   remove (todo) {
     const index = R.findIndex(t => t.id === todo.id, this.todos)
     this.todos.splice(index, 1)
@@ -60,15 +66,17 @@ const store = SubX.create({
     delete todo.cache
   },
   clearCompleted () {
-    this.todos = this.todos.filter(todo => !todo.completed)
+    R.pipe(
+      R.filter(todo => todo.completed),
+      R.forEach(todo => this.remove(todo))
+    )(this.todos)
   }
 })
+
 store.$.pipe(
   filter(event => R.startsWith(['todos'], event.path)),
   debounceTime(100)
-).subscribe(event => {
-  global.localStorage.setItem('todomvc-subx-todos', JSON.stringify(store.todos))
-})
+).subscribe(event => global.localStorage.setItem('todomvc-subx-todos', JSON.stringify(store.todos)))
 
 const router = new Router({
   '/all': () => { store.visibility = 'all' },
@@ -78,25 +86,18 @@ const router = new Router({
 router.init()
 
 class App extends Component {
-  handleEnter (e) {
-    if (e.key !== 'Enter') {
-      return
-    }
-    const title = e.target.value.trim()
-    if (title === '') {
-      return
-    }
-    e.target.value = ''
-    this.todos.push(Todo.create({ title }))
-  }
   render () {
-    this.store = this.props.store
-    this.todos = this.store.todos
+    const store = this.props.store
     return <>
       <section className='todoapp'>
         <header className='header'>
           <h1>todos</h1>
-          <input className='new-todo' autoFocus autoComplete='off' placeholder='What needs to be done?' onKeyUp={this.handleEnter.bind(this)} />
+          <input className='new-todo' autoFocus autoComplete='off' placeholder='What needs to be done?' onKeyUp={e => {
+            if (e.key === 'Enter') {
+              store.add(e.target.value)
+              e.target.value = ''
+            }
+          }} />
         </header>
         <Body store={store} />
         <Footer store={store} />
@@ -157,8 +158,7 @@ class TodoItem extends Component {
 class Footer extends Component {
   render () {
     const store = this.props.store
-    const todos = store.todos
-    if (todos.length === 0) {
+    if (store.todos.length === 0) {
       return ''
     }
     return <footer className='footer'>
