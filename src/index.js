@@ -114,43 +114,41 @@ class App extends Component {
 class Body extends Component {
   render () {
     const store = this.props.store
-    const todos = store.todos
-    if (todos.length === 0) {
+    if (store.todos.length === 0) {
       return ''
     }
     return <section className='main'>
       <input id='toggle-all' className='toggle-all' type='checkbox' checked={store.areAllDone} onChange={e => store.toggleAll()} />
       <label htmlFor='toggle-all'>Mark all as complete</label>
       <ul className='todo-list'>
-        {store.visibleTodos.map(todo => <TodoItem todo={todo} key={todo.id} />)}
+        {store.visibleTodos.map(todo => <TodoItem store={store} todo={todo} key={todo.id} />)}
       </ul>
     </section>
   }
 }
 
 class TodoItem extends Component {
-  handleKeyUp (e) {
-    if (e.key === 'Enter') {
-      store.doneEdit(this.todo)
-    } else if (e.key === 'Escape') {
-      store.cancelEdit(this.todo)
-    }
-  }
   render () {
-    this.todo = this.props.todo
-    return <li className={classNames('todo', { completed: this.todo.completed, editing: this.todo.cache })}>
+    const { store, todo } = this.props
+    return <li className={classNames('todo', { completed: todo.completed, editing: todo.cache })}>
       <div className='view'>
-        <input className='toggle' type='checkbox' checked={this.todo.completed} onChange={e => { this.todo.completed = e.target.checked }} />
+        <input className='toggle' type='checkbox' checked={todo.completed} onChange={e => { todo.completed = e.target.checked }} />
         <label onDoubleClick={e => {
-          store.edit(this.todo)
+          store.edit(todo)
           setTimeout(() => ReactDOM.findDOMNode(this.refs.editField).focus(), 10)
-        }}>{this.todo.title}</label>
-        <button className='destroy' onClick={e => store.remove(this.todo)} />
+        }}>{todo.title}</label>
+        <button className='destroy' onClick={e => store.remove(todo)} />
       </div>
-      <input ref='editField' className='edit' type='text' value={this.todo.title}
-        onChange={e => { this.todo.title = e.target.value }}
-        onKeyUp={this.handleKeyUp.bind(this)}
-        onBlur={e => store.doneEdit(this.todo)} />
+      <input ref='editField' className='edit' type='text' value={todo.title}
+        onChange={e => { todo.title = e.target.value }}
+        onKeyUp={e => {
+          if (e.key === 'Enter') {
+            store.doneEdit(todo)
+          } else if (e.key === 'Escape') {
+            store.cancelEdit(todo)
+          }
+        }}
+        onBlur={e => store.doneEdit(todo)} />
     </li>
   }
 }
