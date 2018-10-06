@@ -87,6 +87,7 @@ router.init()
 
 class App extends Component {
   render () {
+    console.log('render App')
     const store = this.props.store
     return <>
       <section className='todoapp'>
@@ -113,6 +114,7 @@ class App extends Component {
 
 class Body extends Component {
   render () {
+    console.log('render Body')
     const store = this.props.store
     if (store.todos.length === 0) {
       return ''
@@ -129,6 +131,7 @@ class Body extends Component {
 
 class TodoItem extends Component {
   render () {
+    console.log('render TodoItem')
     const { store, todo } = this.props
     return <li className={classNames('todo', { completed: todo.completed, editing: todo.cache })}>
       <div className='view'>
@@ -155,6 +158,7 @@ class TodoItem extends Component {
 
 class Footer extends Component {
   render () {
+    console.log('render Footer')
     const store = this.props.store
     if (store.todos.length === 0) {
       return ''

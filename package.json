@@ -1,6 +1,6 @@
 {
   "name": "subx-demo-todomvc",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --open --progress --colors"
@@ -11,9 +11,9 @@
     "pluralize": "^7.0.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-subx": "^0.2.6",
+    "react-subx": "^0.2.7",
     "rxjs": "^6.3.3",
-    "subx": "^0.4.7",
+    "subx": "^0.4.8",
     "todomvc-app-css": "^2.1.2",
     "uuid": "^3.3.2"
   },
