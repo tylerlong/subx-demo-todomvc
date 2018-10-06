@@ -3971,9 +3971,9 @@ react-dom@^16.5.2:
     prop-types "^15.6.2"
     schedule "^0.5.0"
 
-react-subx@^0.2.5:
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/react-subx/-/react-subx-0.2.5.tgz#2ba18b89516dee5fe64cd36f9deaf25f483af9f8"
+react-subx@^0.2.6:
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/react-subx/-/react-subx-0.2.6.tgz#ed97a6f2658742d82c9444076d4845f9e2b7dbec"
 
 react@^16.5.2:
   version "16.5.2"
@@ -4646,9 +4646,9 @@ style-loader@^0.23.0:
     loader-utils "^1.1.0"
     schema-utils "^0.4.5"
 
-subx@^0.4.6:
-  version "0.4.6"
-  resolved "https://registry.yarnpkg.com/subx/-/subx-0.4.6.tgz#4fa3f4df856b57cb1ad51494a6ac6ce4dee320dc"
+subx@^0.4.7:
+  version "0.4.7"
+  resolved "https://registry.yarnpkg.com/subx/-/subx-0.4.7.tgz#00f8d9664614eb0922d553d5cd99d8b098a7654b"
   dependencies:
     ramda "^0.25.0"
     rxjs "^6.3.3"
