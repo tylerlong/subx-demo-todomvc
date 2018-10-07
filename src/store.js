@@ -9,7 +9,7 @@ const Todo = new SubX({
 Todo.create = obj => new Todo({ id: uuid(), ...obj })
 
 const store = SubX.create({
-  todos: JSON.parse(global.localStorage.getItem('todomvc-subx-todos') || '[]'),
+  todos: [],
   visibility: 'all',
   get visibleTodos () {
     if (this.visibility === 'all') {

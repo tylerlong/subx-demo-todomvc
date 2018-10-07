@@ -20,4 +20,9 @@ store.$.pipe(
   debounceTime(100)
 ).subscribe(event => global.localStorage.setItem('todomvc-subx-todos', JSON.stringify(store.todos)))
 
+const savedTodos = global.localStorage.getItem('todomvc-subx-todos')
+if (savedTodos) {
+  store.todos = JSON.parse(savedTodos)
+}
+
 ReactDOM.render(<App store={store} />, document.getElementById('container'))
