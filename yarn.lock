@@ -5224,9 +5224,9 @@ react-is@^16.5.2:
   version "16.5.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.5.2.tgz#e2a7b7c3f5d48062eb769fcb123505eb928722e3"
 
-react-subx@^0.2.7:
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/react-subx/-/react-subx-0.2.7.tgz#21070d002d0e9ee93f572e1c317f995ecc259838"
+react-subx@^0.2.8:
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/react-subx/-/react-subx-0.2.8.tgz#a07fed45a3565139fddcd9af90583ff5b91866dc"
 
 react-test-renderer@^16.5.2:
   version "16.5.2"
