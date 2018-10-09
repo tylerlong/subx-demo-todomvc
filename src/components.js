@@ -6,7 +6,9 @@ import ReactDOM from 'react-dom'
 
 export class App extends Component {
   render () {
+    /* DEV-START */
     console.log('render App')
+    /* DEV-END */
     const store = this.props.store
     return <>
       <section className='todoapp'>
@@ -33,7 +35,9 @@ export class App extends Component {
 
 class Body extends Component {
   render () {
+    /* DEV-START */
     console.log('render Body')
+    /* DEV-END */
     const store = this.props.store
     if (store.todos.length === 0) {
       return ''
@@ -50,7 +54,9 @@ class Body extends Component {
 
 class TodoItem extends Component {
   render () {
+    /* DEV-START */
     console.log('render TodoItem')
+    /* DEV-END */
     const { store, todo } = this.props
     return <li className={classNames('todo', { completed: todo.completed, editing: todo.cache })}>
       <div className='view'>
@@ -77,7 +83,9 @@ class TodoItem extends Component {
 
 class Footer extends Component {
   render () {
+    /* DEV-START */
     console.log('render Footer')
+    /* DEV-END */
     const store = this.props.store
     if (store.todos.length === 0) {
       return ''

@@ -20,12 +20,14 @@ describe('default', () => {
       { title: '111', completed: false },
       { title: '222', completed: false }
     ])
+
     input.props.onKeyUp({ key: 'Enter', target: { value: '333' } })
     expect(R.map(R.dissoc('id'), store.todos)).toEqual([
       { title: '111', completed: false },
       { title: '222', completed: false },
       { title: '333', completed: false }
     ])
+
     input.props.onKeyUp({ key: 'Enter', target: { value: '444' } })
     input.props.onKeyUp({ key: 'Enter', target: { value: '555' } })
     expect(R.map(R.dissoc('id'), store.todos)).toEqual([

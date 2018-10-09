@@ -19,6 +19,20 @@ const config = {
       },
       {
         test: /\.js$/,
+        enforce: 'pre',
+        exclude: /(node_modules|docs|test|\.spec\.js)/,
+        use: [
+          {
+            loader: 'webpack-strip-block',
+            options: {
+              start: 'DEV-START',
+              end: 'DEV-END'
+            }
+          }
+        ]
+      },
+      {
+        test: /\.js$/,
         loader: 'babel-loader'
       }
     ]
