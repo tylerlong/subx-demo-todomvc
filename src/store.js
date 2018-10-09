@@ -2,7 +2,7 @@ import SubX from 'subx'
 import uuid from 'uuid/v1'
 import * as R from 'ramda'
 
-const Todo = new SubX({
+export const Todo = new SubX({
   title: '',
   completed: false
 })

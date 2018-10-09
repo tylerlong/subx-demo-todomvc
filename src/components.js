@@ -10,7 +10,6 @@ global.renders = []
 
 export class App extends Component {
   render () {
-    console.log('render App')
     /* DEV-START */
     global.renders.push('App')
     /* DEV-END */
@@ -40,7 +39,6 @@ export class App extends Component {
 
 class Body extends Component {
   render () {
-    console.log('render Body')
     /* DEV-START */
     global.renders.push('Body')
     /* DEV-END */
@@ -60,7 +58,6 @@ class Body extends Component {
 
 class TodoItem extends Component {
   render () {
-    console.log('render TodoItem')
     /* DEV-START */
     global.renders.push('TodoItem')
     /* DEV-END */
@@ -90,7 +87,6 @@ class TodoItem extends Component {
 
 class Footer extends Component {
   render () {
-    console.log('render Footer')
     /* DEV-START */
     global.renders.push('Footer')
     /* DEV-END */
