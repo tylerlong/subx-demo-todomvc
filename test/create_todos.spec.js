@@ -6,8 +6,9 @@ import * as R from 'ramda'
 import { App } from '../src/components'
 import store from '../src/store'
 
-describe('default', () => {
-  test('create todos', () => {
+describe('create todos', () => {
+  test('default', () => {
+    global.renders = []
     const renderer = TestRenderer.create(<App store={store} />)
     expect(renderer).toBeDefined()
     expect(store.todos).toEqual([])
