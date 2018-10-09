@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --open --progress --colors",
-    "release": "webpack --progress --colors",
+    "release": "webpack --progress --colors --config webpack.config.prod.babel.js",
     "lint": "standard",
     "test": "jest -w 1",
     "upgrade": "yarn-upgrade-all && yarn remove babel-core && yarn add --dev babel-core@7.0.0-bridge.0"
