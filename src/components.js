@@ -27,7 +27,7 @@ export class App extends Component {
         </header>
         <Body store={store} />
         <Footer store={store} />
-      </section>,
+      </section>
       <footer className='info'>
         <p>Double-click to edit a todo</p>
         <p>Written by <a href='https://github.com/tylerlong'>Tyler Long</a></p>
