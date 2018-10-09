@@ -4,10 +4,15 @@ import classNames from 'classnames'
 import pluralize from 'pluralize'
 import ReactDOM from 'react-dom'
 
+/* DEV-START */
+global.renders = []
+/* DEV-END */
+
 export class App extends Component {
   render () {
-    /* DEV-START */
     console.log('render App')
+    /* DEV-START */
+    global.renders.push('App')
     /* DEV-END */
     const store = this.props.store
     return <>
@@ -35,8 +40,9 @@ export class App extends Component {
 
 class Body extends Component {
   render () {
-    /* DEV-START */
     console.log('render Body')
+    /* DEV-START */
+    global.renders.push('Body')
     /* DEV-END */
     const store = this.props.store
     if (store.todos.length === 0) {
@@ -54,8 +60,9 @@ class Body extends Component {
 
 class TodoItem extends Component {
   render () {
-    /* DEV-START */
     console.log('render TodoItem')
+    /* DEV-START */
+    global.renders.push('TodoItem')
     /* DEV-END */
     const { store, todo } = this.props
     return <li className={classNames('todo', { completed: todo.completed, editing: todo.cache })}>
@@ -83,8 +90,9 @@ class TodoItem extends Component {
 
 class Footer extends Component {
   render () {
-    /* DEV-START */
     console.log('render Footer')
+    /* DEV-START */
+    global.renders.push('Footer')
     /* DEV-END */
     const store = this.props.store
     if (store.todos.length === 0) {
