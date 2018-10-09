@@ -12,32 +12,34 @@ store.todos = [
 ]
 describe('change visibility', () => {
   test('default', () => {
-    global.renders = []
+    let renders = []
+    global.render$.subscribe(event => renders.push(event))
+
     const renderer = TestRenderer.create(<App store={store} />)
     expect(renderer).toBeDefined()
-    expect(global.renders).toEqual(['App', 'Body', 'TodoItem', 'TodoItem', 'TodoItem', 'Footer'])
+    expect(renders).toEqual(['App', 'Body', 'TodoItem', 'TodoItem', 'TodoItem', 'Footer'])
 
-    global.renders = []
+    renders = []
     store.visibility = 'active'
-    expect(global.renders).toEqual(['Footer'])
+    expect(renders).toEqual(['Footer'])
     expect(store.todos.length).toBe(store.todos.filter(todo => !todo.completed).length)
     expect(store.todos).not.toBe(store.todos.filter(todo => !todo.completed))
     expect(store.todos).toEqual(store.todos.filter(todo => !todo.completed))
 
-    global.renders = []
+    renders = []
     store.visibility = 'all'
-    expect(global.renders).toEqual(['Footer'])
+    expect(renders).toEqual(['Footer'])
 
-    global.renders = []
+    renders = []
     store.visibility = 'completed'
-    expect(global.renders).toEqual(['Body', 'Footer'])
+    expect(renders).toEqual(['Body', 'Footer'])
 
-    global.renders = []
+    renders = []
     store.visibility = 'completed'
-    expect(global.renders).toEqual([])
+    expect(renders).toEqual([])
 
-    global.renders = []
+    renders = []
     store.visibility = 'active'
-    expect(global.renders).toEqual(['Body', 'TodoItem', 'TodoItem', 'TodoItem', 'Footer'])
+    expect(renders).toEqual(['Body', 'TodoItem', 'TodoItem', 'TodoItem', 'Footer'])
   })
 })

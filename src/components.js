@@ -5,13 +5,15 @@ import pluralize from 'pluralize'
 import ReactDOM from 'react-dom'
 
 /* DEV-START */
-global.renders = []
+import { Subject } from 'rxjs'
+const render$ = new Subject()
+global.render$ = render$
 /* DEV-END */
 
 export class App extends Component {
   render () {
     /* DEV-START */
-    global.renders.push('App')
+    render$.next('App')
     /* DEV-END */
     const store = this.props.store
     return <>
@@ -40,7 +42,7 @@ export class App extends Component {
 class Body extends Component {
   render () {
     /* DEV-START */
-    global.renders.push('Body')
+    render$.next('Body')
     /* DEV-END */
     const store = this.props.store
     if (store.todos.length === 0) {
@@ -59,7 +61,7 @@ class Body extends Component {
 class TodoItem extends Component {
   render () {
     /* DEV-START */
-    global.renders.push('TodoItem')
+    render$.next('TodoItem')
     /* DEV-END */
     const { store, todo } = this.props
     return <li className={classNames('todo', { completed: todo.completed, editing: todo.cache })}>
@@ -88,7 +90,7 @@ class TodoItem extends Component {
 class Footer extends Component {
   render () {
     /* DEV-START */
-    global.renders.push('Footer')
+    render$.next('Footer')
     /* DEV-END */
     const store = this.props.store
     if (store.todos.length === 0) {
