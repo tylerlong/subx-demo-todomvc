@@ -6,8 +6,7 @@
     "start": "webpack-dev-server --open --progress --colors",
     "release": "webpack --progress --colors --config webpack.config.prod.babel.js",
     "lint": "standard",
-    "test": "jest -w 1",
-    "upgrade": "yarn-upgrade-all && yarn remove babel-core && yarn add --dev babel-core@7.0.0-bridge.0"
+    "test": "jest -w 1"
   },
   "dependencies": {
     "classnames": "^2.2.6",
@@ -15,9 +14,9 @@
     "pluralize": "^7.0.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-subx": "^0.2.10",
+    "react-subx": "^0.3.0",
     "rxjs": "^6.3.3",
-    "subx": "^0.5.0",
+    "subx": "^0.5.1",
     "todomvc-app-css": "^2.1.2",
     "uuid": "^3.3.2"
   },
@@ -40,7 +39,7 @@
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.9",
     "webpack-strip-block": "^0.2.0",
-    "yarn-upgrade-all": "^0.3.0"
+    "yarn-upgrade-all": "^0.5.0"
   },
   "standard": {
     "ignore": [
@@ -49,5 +48,10 @@
   },
   "jest": {
     "setupTestFrameworkScriptFile": "./test/setup.js"
+  },
+  "yarn-upgrade-all": {
+    "ignore": [
+      "babel-core"
+    ]
   }
 }
