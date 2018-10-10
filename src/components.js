@@ -39,7 +39,7 @@ export class App extends Component {
   }
 }
 
-class Body extends Component {
+export class Body extends Component {
   render () {
     /* DEV-START */
     render$.next('Body')
@@ -58,7 +58,7 @@ class Body extends Component {
   }
 }
 
-class TodoItem extends Component {
+export class TodoItem extends Component {
   render () {
     /* DEV-START */
     render$.next('TodoItem')
@@ -87,7 +87,7 @@ class TodoItem extends Component {
   }
 }
 
-class Footer extends Component {
+export class Footer extends Component {
   render () {
     /* DEV-START */
     render$.next('Footer')
