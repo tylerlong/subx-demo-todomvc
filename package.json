@@ -6,7 +6,8 @@
     "start": "webpack-dev-server --open --progress --colors",
     "release": "webpack --progress --colors --config webpack.config.prod.babel.js",
     "lint": "standard",
-    "test": "jest -w 1"
+    "test": "jest -w 1",
+    "upgradeSubX": "yarn remove subx react-subx && yarn add subx react-subx"
   },
   "dependencies": {
     "classnames": "^2.2.6",
@@ -16,7 +17,7 @@
     "react-dom": "^16.5.2",
     "react-subx": "^0.3.0",
     "rxjs": "^6.3.3",
-    "subx": "^0.5.1",
+    "subx": "^0.5.2",
     "todomvc-app-css": "^2.1.2",
     "uuid": "^3.3.2"
   },
