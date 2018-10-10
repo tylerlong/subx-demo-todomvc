@@ -1,17 +1,17 @@
 /* eslint-env jest */
 import React from 'react'
 import TestRenderer from 'react-test-renderer'
+import delay from 'timeout-as-promise'
 
 import { App } from '../src/components'
-import store, { Todo } from '../src/store'
+import store from '../src/store'
 
-store.todos = [
-  Todo.create('111'),
-  Todo.create('222'),
-  Todo.create('333')
-]
+store.add('111')
+store.add('222')
+store.add('333')
+
 describe('change visibility', () => {
-  test('default', () => {
+  test('default', async () => {
     let renders = []
     global.render$.subscribe(event => renders.push(event))
 
@@ -21,6 +21,7 @@ describe('change visibility', () => {
 
     renders = []
     store.visibility = 'active'
+    await delay(15)
     expect(renders).toEqual(['Footer'])
     expect(store.todos.length).toBe(store.todos.filter(todo => !todo.completed).length)
     expect(store.todos).not.toBe(store.todos.filter(todo => !todo.completed))
@@ -28,18 +29,22 @@ describe('change visibility', () => {
 
     renders = []
     store.visibility = 'all'
+    await delay(15)
     expect(renders).toEqual(['Footer'])
 
     renders = []
     store.visibility = 'completed'
+    await delay(15)
     expect(renders).toEqual(['Body', 'Footer'])
 
     renders = []
     store.visibility = 'completed'
+    await delay(15)
     expect(renders).toEqual([])
 
     renders = []
     store.visibility = 'active'
+    await delay(15)
     expect(renders).toEqual(['Body', 'TodoItem', 'TodoItem', 'TodoItem', 'Footer'])
   })
 })
