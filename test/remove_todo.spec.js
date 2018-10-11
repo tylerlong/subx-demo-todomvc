@@ -24,7 +24,7 @@ describe('remove todo', () => {
     removeButton.props.onClick()
     expect(store.todos.length).toBe(2)
     await delay(15)
-    expect(renders).toEqual(['TodoItem', 'Body', 'Footer'])
+    expect(renders).toEqual(['Body', 'Footer'])
     expect(R.map(R.dissoc('id'), store.todos)).toEqual([
       {
         title: '111',
