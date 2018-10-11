@@ -15,7 +15,7 @@ describe('create todos', () => {
     const renderer = TestRenderer.create(<App store={store} />)
     expect(renderer).toBeDefined()
     expect(store.todos).toEqual([])
-    await delay(20)
+    await delay(15)
     expect(renders).toEqual(['App', 'Body', 'Footer'])
 
     const input = renderer.root.find(el => el.type === 'input' && el.props.className === 'new-todo')
@@ -23,7 +23,7 @@ describe('create todos', () => {
     renders = []
     input.props.onKeyUp({ key: 'Enter', target: { value: '111' } })
     expect(R.map(R.dissoc('id'), store.todos)).toEqual([{ title: '111', completed: false }])
-    await delay(20)
+    await delay(15)
     expect(renders).toEqual(['Body', 'TodoItem', 'Footer'])
 
     renders = []
@@ -32,7 +32,7 @@ describe('create todos', () => {
       { title: '111', completed: false },
       { title: '222', completed: false }
     ])
-    await delay(20)
+    await delay(15)
     expect(renders).toEqual(['Body', 'TodoItem', 'Footer'])
 
     renders = []
@@ -42,7 +42,7 @@ describe('create todos', () => {
       { title: '222', completed: false },
       { title: '333', completed: false }
     ])
-    await delay(20)
+    await delay(15)
     expect(renders).toEqual(['Body', 'TodoItem', 'Footer'])
 
     renders = []
@@ -55,7 +55,7 @@ describe('create todos', () => {
       { title: '444', completed: false },
       { title: '555', completed: false }
     ])
-    await delay(20)
+    await delay(15)
     expect(renders).toEqual(['Body', 'TodoItem', 'TodoItem', 'Footer'])
   })
 })

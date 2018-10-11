@@ -13,7 +13,8 @@ global.render$ = render$
 export class App extends Component {
   render () {
     /* DEV-START */
-    render$.next('App')
+    this.name = 'App'
+    render$.next(this.name)
     /* DEV-END */
     const store = this.props.store
     return <>
@@ -42,7 +43,8 @@ export class App extends Component {
 export class Body extends Component {
   render () {
     /* DEV-START */
-    render$.next('Body')
+    this.name = 'Body'
+    render$.next(this.name)
     /* DEV-END */
     const store = this.props.store
     if (store.todos.length === 0) {
@@ -61,7 +63,8 @@ export class Body extends Component {
 export class TodoItem extends Component {
   render () {
     /* DEV-START */
-    render$.next('TodoItem')
+    this.name = 'TodoItem'
+    render$.next(this.name)
     /* DEV-END */
     const { store, todo } = this.props
     return <li className={classNames('todo', { completed: todo.completed, editing: todo.cache })}>
@@ -90,7 +93,8 @@ export class TodoItem extends Component {
 export class Footer extends Component {
   render () {
     /* DEV-START */
-    render$.next('Footer')
+    this.name = 'Footer'
+    render$.next(this.name)
     /* DEV-END */
     const store = this.props.store
     if (store.todos.length === 0) {
