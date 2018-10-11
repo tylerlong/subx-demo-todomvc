@@ -1,5 +1,5 @@
 import SubX from 'subx'
-import uuid from 'uuid/v1'
+import uuid from 'uuid/v4'
 import * as R from 'ramda'
 
 export const Todo = new SubX({
