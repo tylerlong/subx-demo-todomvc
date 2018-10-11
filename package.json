@@ -1,5 +1,6 @@
 {
   "name": "subx-demo-todomvc",
+  "description": "React & SubX TodoMVC Example, SubX is the next generation state container",
   "version": "2.0.0",
   "license": "MIT",
   "scripts": {
