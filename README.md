@@ -14,7 +14,7 @@ This TodoMVC application was created by [Tyler Long](https://github.com/tylerlon
 
 SubX can minimize rendering, it is one of its strengths. React components will not render until absolutely necessary.
 
-In **development** mode, you can watch the rendering by execute the following in browser console:
+In **development** mode, we can watch the rendering by execute the following in browser console:
 
 ```js
 render$.subscribe(console.log)
