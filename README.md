@@ -5,6 +5,9 @@
 Use [react-subx](https://github.com/tylerlong/react-subx) if you want to use React together with SubX.
 
 
+### [Live demo](https://tylerlong.github.io/subx-demo-todomvc/index.html)
+
+
 ## Credit
 
 This TodoMVC application was created by [Tyler Long](https://github.com/tylerlong).
