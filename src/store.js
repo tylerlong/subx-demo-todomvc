@@ -61,10 +61,7 @@ const store = SubX.create({
     delete todo.cache
   },
   clearCompleted () {
-    R.pipe(
-      R.filter(todo => todo.completed),
-      R.forEach(todo => this.remove(todo))
-    )(this.todos)
+    this.todos = this.todos.filter(todo => !todo.completed)
   }
 })
 
