@@ -5181,9 +5181,9 @@ react-is@^16.5.2:
   version "16.5.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.5.2.tgz#e2a7b7c3f5d48062eb769fcb123505eb928722e3"
 
-react-subx@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/react-subx/-/react-subx-0.4.1.tgz#d8f24c7d6e1aff3d220551c78d4d443a3f017328"
+react-subx@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/react-subx/-/react-subx-0.4.2.tgz#b47f8473606648fafcfa7e07385a0eb9848fac74"
 
 react-test-renderer@^16.5.2:
   version "16.5.2"
@@ -6009,9 +6009,9 @@ style-loader@^0.23.1:
     loader-utils "^1.1.0"
     schema-utils "^1.0.0"
 
-subx@^0.6.2:
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/subx/-/subx-0.6.2.tgz#3815ec58a9a3aaff20327e1a1cf992b64f65ab11"
+subx@^0.6.3:
+  version "0.6.3"
+  resolved "https://registry.yarnpkg.com/subx/-/subx-0.6.3.tgz#1861c7e11ff28bcc58c08dca5b3731b3c1f4e0be"
   dependencies:
     ramda "^0.25.0"
     rxjs "^6.3.3"
