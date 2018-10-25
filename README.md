@@ -22,3 +22,7 @@ In **development** mode, we can watch the rendering by execute the following in 
 ```js
 render$.subscribe(console.log)
 ```
+
+## Todo
+
+Cannot enter Chinese when editing todo
