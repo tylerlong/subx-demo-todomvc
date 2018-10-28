@@ -33,7 +33,7 @@ describe('create todos', () => {
       { title: '222', completed: false }
     ])
     await delay(15)
-    expect(renders).toEqual(['Body', 'TodoItem', 'Footer'])
+    expect(renders).toEqual(['Footer', 'Body', 'TodoItem'])
 
     renders = []
     input.props.onKeyUp({ key: 'Enter', target: { value: '333' } })
@@ -43,7 +43,7 @@ describe('create todos', () => {
       { title: '333', completed: false }
     ])
     await delay(15)
-    expect(renders).toEqual(['Body', 'TodoItem', 'Footer'])
+    expect(renders).toEqual(['Footer', 'Body', 'TodoItem'])
 
     renders = []
     input.props.onKeyUp({ key: 'Enter', target: { value: '444' } })
@@ -56,6 +56,6 @@ describe('create todos', () => {
       { title: '555', completed: false }
     ])
     await delay(15)
-    expect(renders).toEqual(['Body', 'TodoItem', 'TodoItem', 'Footer'])
+    expect(renders).toEqual(['Footer', 'Body', 'TodoItem', 'Footer', 'Body', 'TodoItem'])
   })
 })

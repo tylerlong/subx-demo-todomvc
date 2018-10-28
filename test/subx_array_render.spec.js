@@ -134,6 +134,6 @@ describe('subx array render', () => {
     renders = []
     store.todos.shift()
     await delay(15)
-    expect(renders).toEqual(['Body', 'Footer']) // it does NOT render two remaining TodoItems again.
+    expect(renders).toEqual(['Footer', 'Body']) // it does NOT render two remaining TodoItems again.
   })
 })

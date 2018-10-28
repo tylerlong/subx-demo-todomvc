@@ -24,7 +24,7 @@ describe('remove todo', () => {
     removeButton.props.onClick()
     expect(store.todos.length).toBe(2)
     await delay(15)
-    expect(renders).toEqual(['Body', 'Footer'])
+    expect(renders).toEqual(['Footer', 'Body'])
     expect(R.map(R.dissoc('id'), store.todos)).toEqual([
       {
         title: '111',
@@ -40,7 +40,7 @@ describe('remove todo', () => {
     renderer.root.findAllByType(TodoItem)[1].find(el => el.type === 'button').props.onClick() // remove button for 2nd todo
     expect(store.todos.length).toBe(1)
     await delay(15)
-    expect(renders).toEqual(['Body', 'Footer'])
+    expect(renders).toEqual(['Footer', 'Body'])
     expect(R.map(R.dissoc('id'), store.todos)).toEqual([
       {
         title: '111',
