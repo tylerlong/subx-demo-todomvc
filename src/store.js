@@ -1,12 +1,11 @@
 import SubX from 'subx'
-import uuid from 'uuid/v4'
+import { v4 as uuid } from 'uuid'
 import * as R from 'ramda'
 
-export const Todo = new SubX({
+export const Todo = SubX.model({
   title: '',
   completed: false
 })
-Todo.create = obj => new Todo({ id: uuid(), ...obj })
 
 const store = SubX.create({
   todos: [],
@@ -39,7 +38,7 @@ const store = SubX.create({
   add (title) {
     title = title.trim()
     if (title !== '') {
-      this.todos.push(Todo.create({ title }))
+      this.todos.push(Todo.create({ title, id: uuid() }))
     }
   },
   remove (todo) {
