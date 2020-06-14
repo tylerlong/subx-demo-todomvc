@@ -1,14 +1,13 @@
 {
   "name": "subx-demo-todomvc",
   "description": "React & SubX TodoMVC Example, SubX is the next generation state container",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --open --progress --colors",
     "release": "webpack --progress --colors --config webpack.config.prod.babel.js",
     "lint": "standard",
-    "test": "jest -w 1",
-    "upgradeSubX": "yarn remove subx react-subx && yarn add subx react-subx"
+    "test": "jest -w 1"
   },
   "dependencies": {
     "classnames": "^2.2.6",
@@ -50,7 +49,7 @@
     ]
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "./test/setup.js"
+    "setupFilesAfterEnv": ["./test/setup.js"]
   },
   "yarn-upgrade-all": {
     "ignore": [

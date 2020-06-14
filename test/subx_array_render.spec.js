@@ -30,12 +30,16 @@ describe('subx array render', () => {
       render () {
         renders.push('App')
         this.name = 'App'
-        return <>
-          <ul>{this.props.store.todos.map(todo => <TodoItem todo={todo} key={todo.title} />)}</ul>
-          <button onClick={e => {
-            this.props.store.removeFirst()
-          }}>Remove first</button>
-        </>
+        return (
+          <>
+            <ul>{this.props.store.todos.map(todo => <TodoItem todo={todo} key={todo.title} />)}</ul>
+            <button onClick={e => {
+              this.props.store.removeFirst()
+            }}
+            >Remove first
+            </button>
+          </>
+        )
       }
     }
 
@@ -62,12 +66,16 @@ describe('subx array render', () => {
       render () {
         renders.push('App')
         this.name = 'App'
-        return <>
-          <ul>{this.props.store.todos.map(todo => <TodoItem todo={todo} key={todo.title} />)}</ul>
-          <button onClick={e => {
-            this.props.store.removeFirst()
-          }}>Remove first</button>
+        return (
+          <>
+            <ul>{this.props.store.todos.map(todo => <TodoItem todo={todo} key={todo.title} />)}</ul>
+            <button onClick={e => {
+              this.props.store.removeFirst()
+            }}
+            >Remove first
+            </button>
           </>
+        )
       }
     }
 
@@ -77,6 +85,7 @@ describe('subx array render', () => {
         renders.push('TodoItem')
         return this.props.todo.title
       }
+
       shouldComponentUpdate (nextProps, nextState) {
         return this.props.todo.title !== nextProps.todo.title
       }
@@ -96,12 +105,16 @@ describe('subx array render', () => {
     class App extends Component {
       render () {
         renders.push('App')
-        return <>
-          <ul>{this.props.store.todos.map(todo => <TodoItem todo={todo} key={todo.title} />)}</ul>
-          <button onClick={e => {
-            this.props.store.removeFirst()
-          }}>Remove first</button>
+        return (
+          <>
+            <ul>{this.props.store.todos.map(todo => <TodoItem todo={todo} key={todo.title} />)}</ul>
+            <button onClick={e => {
+              this.props.store.removeFirst()
+            }}
+            >Remove first
+            </button>
           </>
+        )
       }
     }
 

@@ -18,14 +18,19 @@ describe('react array render', () => {
           ]
         }
       }
+
       render () {
         renders.push('App')
-        return <>
-          <ul>{this.state.todos.map(todo => <TodoItem todo={todo} key={todo.title} />)}</ul>
-          <button onClick={e => {
-            this.setState({ todos: R.tail(this.state.todos) })
-          }}>Remove first</button>
-        </>
+        return (
+          <>
+            <ul>{this.state.todos.map(todo => <TodoItem todo={todo} key={todo.title} />)}</ul>
+            <button onClick={e => {
+              this.setState({ todos: R.tail(this.state.todos) })
+            }}
+            >Remove first
+            </button>
+          </>
+        )
       }
     }
 
@@ -34,6 +39,7 @@ describe('react array render', () => {
         renders.push('TodoItem')
         return this.props.todo.title
       }
+
       shouldComponentUpdate (nextProps, nextState) {
         return this.props.todo.title !== nextProps.todo.title
       }
@@ -60,14 +66,19 @@ describe('react array render', () => {
           ]
         }
       }
+
       render () {
         renders.push('App')
-        return <>
-          <ul>{this.state.todos.map(todo => <TodoItem todo={todo} key={todo.title} />)}</ul>
-          <button onClick={e => {
-            this.setState({ todos: R.tail(this.state.todos) })
-          }}>Remove first</button>
-        </>
+        return (
+          <>
+            <ul>{this.state.todos.map(todo => <TodoItem todo={todo} key={todo.title} />)}</ul>
+            <button onClick={e => {
+              this.setState({ todos: R.tail(this.state.todos) })
+            }}
+            >Remove first
+            </button>
+          </>
+        )
       }
     }
 
